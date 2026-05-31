@@ -84,11 +84,11 @@ export default {
     }
   },
   methods: {
-    handleAddNote(newNote) {
+    AddNote(newNote) {
       this.notes.unshift(newNote);
       this.saveNotes();
     },
-    handleDeleteNote(noteId) {
+    DeleteNote(noteId) {
       var index = -1;
       for (var i = 0; i < this.notes.length; i++) {
         if (this.notes[i].id === noteId) { index = i; break; }
@@ -98,7 +98,7 @@ export default {
         this.saveNotes();
       }
     },
-    handleChangeStatus(payload) {
+    ChangeStatus(payload) {
       var id = payload.id;
       var newStatus = payload.newStatus;
       var note = null;
@@ -113,7 +113,7 @@ export default {
         this.saveNotes();
       }
     },
-    handleToggleImportant(noteId) {
+    ToggleImportant(noteId) {
       var note = null;
       for (var i = 0; i < this.notes.length; i++) {
         if (this.notes[i].id === noteId) { note = this.notes[i]; break; }
@@ -133,7 +133,7 @@ export default {
 <template>
   <div class="container py-4">
     <h1 class="text-center mb-4">📌 Доска заметок</h1>
-    <NoteForm @add-note="handleAddNote" />
+    <NoteForm @add-note="AddNote" />
     <div class="text-center text-md-start mb-3">
       <p class="text-muted">
         Всего: <strong>{{ notes.length }}</strong>
@@ -147,13 +147,13 @@ export default {
       <h4 class="mb-3">⭐ Важные</h4>
         <div class="row">
             <div v-for="note in importantNotes" :key="note.id" class="col-12 col-md-6 col-lg-4">
-              <NoteCard :note="note" @delete-note="handleDeleteNote" @change-status="handleChangeStatus" @toggle-important="handleToggleImportant" />
+              <NoteCard :note="note" @delete-note="DeleteNote" @change-status="ChangeStatus" @toggle-important="ToggleImportant" />
             </div>
         </div>
     </div>
     <div class="row">
       <div v-for="note in otherNotes" :key="note.id" class="col-12 col-md-6 col-lg-4">
-        <NoteCard :note="note" @delete-note="handleDeleteNote" @change-status="handleChangeStatus" @toggle-important="handleToggleImportant" />
+        <NoteCard :note="note" @delete-note="DeleteNote" @change-status="ChangeStatus" @toggle-important="ToggleImportant" />
       </div>
     </div>
     <div v-if="notes.length === 0" class="text-center text-muted mt-5">

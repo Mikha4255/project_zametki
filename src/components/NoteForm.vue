@@ -52,7 +52,7 @@ export default {
       </div>
       <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="importantCheck" v-model="isImportant" />
-        <label class="form-check-label" for="importantCheck">⭐ Важная заметка</label>
+        <label class="form-check-label" for="importantCheck">Важная заметка</label>
       </div>
       <button type="button" class="btn btn-primary" :disabled="!noteText.trim()" @click="addNote">
         Добавить

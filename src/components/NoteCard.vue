@@ -18,12 +18,12 @@ export default {
       if (this.note.status === 'in-progress') return 'done';
       return 'todo';
     },
-    nextStatusLabel() {
+    nextLabel() {
       if (this.nextStatus === 'in-progress') return '🟡 В процесс';
       if (this.nextStatus === 'done') return '🟢 Завершить';
       return '🔴 Вернуть';
     },
-    formattedDate() {
+    myDate() {
       if (!this.note.createdAt) return '';
       var d = new Date(this.note.createdAt);
       var day = d.getDate();
@@ -48,14 +48,14 @@ export default {
     <div class="card-body">
       <h5 class="card-title">
         {{ note.text }}
-        <span v-if="note.important" class="badge bg-warning text-dark">⭐ Важное</span>
+        <span v-if="note.important" class="badge bg-warning text-dark">Важное</span>
       </h5>
       <p class="card-text small">
         <span class="badge bg-light text-dark">{{ statusLabel }}</span>
-        <span class="ms-2">{{ formattedDate }}</span>
+        <span class="ms-2">{{ myDate }}</span>
       </p>
       <div class="d-flex gap-2 flex-wrap">
-        <button class="btn btn-sm btn-light" @click="changeStatus">{{ nextStatusLabel }}</button>
+        <button class="btn btn-sm btn-light" @click="changeStatus">{{ nextLabel }}</button>
         <button class="btn btn-sm btn-outline-light" @click="$emit('toggle-important', note.id)">
           {{ note.important ? 'Убрать из важных' : '★ В важные' }}
         </button>
